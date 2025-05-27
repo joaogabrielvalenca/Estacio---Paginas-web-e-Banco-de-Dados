@@ -1,0 +1,48 @@
+<main class="container mt-4">
+  <h1 class="mb-4">Cadastro de Livro</h1>
+  
+  <form (submit)="incluir()" ngNativeValidate>
+    <!-- Campo Título -->
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título *</label>
+      <input type="text" class="form-control" id="titulo" 
+             [(ngModel)]="livro.titulo" name="titulo" required>
+    </div>
+    
+    <!-- Campo Resumo -->
+    <div class="mb-3">
+      <label for="resumo" class="form-label">Resumo *</label>
+      <textarea class="form-control" id="resumo" rows="3"
+                [(ngModel)]="livro.resumo" name="resumo" required></textarea>
+    </div>
+    
+    <!-- Combo Editoras -->
+    <div class="mb-3">
+      <label for="editora" class="form-label">Editora *</label>
+      <select class="form-select" id="editora" 
+              [(ngModel)]="livro.codEditora" name="codEditora" required>
+        <option value="">Selecione uma editora...</option>
+        <option *ngFor="let editora of editoras" [value]="editora.codEditora">
+          {{ editora.nome }}
+        </option>
+      </select>
+    </div>
+    
+    <!-- Campo Autores -->
+    <div class="mb-3">
+      <label for="autores" class="form-label">Autores * (um por linha)</label>
+      <textarea class="form-control" id="autores" rows="3"
+                [(ngModel)]="autoresForm" name="autores" required></textarea>
+    </div>
+    
+    <!-- Botões de Ação -->
+    <div class="d-flex justify-content-end gap-2">
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-save"></i> Salvar
+      </button>
+      <a routerLink="/lista" class="btn btn-outline-secondary">
+        <i class="bi bi-x-circle"></i> Cancelar
+      </a>
+    </div>
+  </form>
+</main>
